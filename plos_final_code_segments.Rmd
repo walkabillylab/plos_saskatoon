@@ -1,0 +1,151 @@
+---
+output:
+  html_document:
+    keep_md: true
+---
+
+# Load the required Libraries
+
+```{r}
+library(sf)
+library(dplyr)
+library(ggplot2)
+library(readr)
+```
+
+# 1.  File paths 
+
+```{r}
+ped_path <- "V:/canadian_pedestrian_network/Saskatoon_ped_1.shp"
+out_csv  <- "V:/canadian_pedestrian_network/sk_segment_plos.csv"
+```
+
+# 2.  Read & prep 
+
+```{r}
+ped <- st_read(ped_path, quiet = TRUE)
+```
+
+
+# 3.  Clean raw fields
+
+```{r}
+ped <- ped |>
+  mutate(
+    Walk_Width = ifelse(Walk_Width %in% c("99999", 99999, "<Null>"), NA, Walk_Width) |> as.numeric(),
+    Walk_Mater = ifelse(Walk_Mater %in% c("<Null>", "0", 0, "9", 9), NA, Walk_Mater) |> as.integer()
+  )
+```
+
+  
+# 4.  Scoring 
+
+```{r}
+score_type <- function(x){
+  case_when(
+    x == "Walkway"  ~ 3,
+    x == "Separate" ~ 3,
+    x == "Pathway"  ~ 2,
+    x == "Combined" ~ 1,
+    TRUE            ~ 1
+  )
+}
+```
+
+
+```{r}
+score_width <- function(w){
+  case_when(
+    is.na(w)  ~ 0,
+    w <  1    ~ 0,
+    w <  1.5  ~ 1,
+    w <  2.5  ~ 2,
+    w <  3    ~ 3,
+    TRUE      ~ 4
+  )
+}
+```
+
+
+```{r}
+score_material <- function(c){
+  case_when(
+    c %in% c(1, 2, 10) ~ 3,
+    c %in% c(3, 4)     ~ 2,
+    c %in% c(5, 7)     ~ 1,
+    c == 6 | is.na(c)  ~ 0,
+    TRUE               ~ 0
+  )
+}
+```
+
+
+# 5.  Segment-level PLOS values 
+
+```{r}
+ped_scored <- ped |>
+  mutate(
+    sc_type   = score_type(Walk_Type_),
+    sc_width  = score_width(Walk_Width),
+    sc_mat    = score_material(Walk_Mater),
+    q_score   = sc_type + sc_width + sc_mat,       
+    seg_km    = SHAPE_Leng / 1000,                  
+    wtd_val   = q_score * seg_km                   
+  ) |>
+```
+
+  
+  # 6.  Z-score & classes
+  
+```{r}
+  mutate(
+    z_score   = scale(wtd_val)[, 1],
+    plos_class = cut(
+      z_score,
+      breaks = c(-Inf, -1, 0, 1, Inf),             # <-1, −1–0, 0–1, >1
+      labels  = c("Very Low", "Low", "High", "Very High"),
+      include.lowest = TRUE
+    )
+  )
+write_sf(ped_scored, "V:/canadian_pedestrian_network/Saskatoon_ped_PLOS_segments.gpkg")
+write_csv(st_drop_geometry(ped_scored), out_csv)
+```
+
+
+# 7.  Colours for four classes 
+
+```{r}
+seg_cols <- c("Very Low" = "yellow",
+              "Low"      = "orange",
+              "High"     = "red",
+              "Very High"= "darkred")
+```
+
+
+# 8.  Creating Segment map 
+
+```{r}
+bbox_seg <- st_bbox(ped_scored)
+buf_m <- 4000
+bbox_seg <- bbox_seg + c(-buf_m, -buf_m, buf_m, buf_m)
+ggplot(ped_scored) +
+  geom_sf(aes(colour = plos_class), size = 1, show.legend = "point") +
+  scale_colour_manual(values = seg_cols, name = "Segment PLOS class") +
+  coord_sf(xlim = c(bbox_seg["xmin"], bbox_seg["xmax"]),
+           ylim = c(bbox_seg["ymin"], bbox_seg["ymax"]), expand = FALSE) +
+  theme_void() +
+  labs(
+    title = "Segment-level Pedestrian Level of Service (PLOS) – Saskatoon",
+    subtitle = "Classes based on Z-score of length-weighted quality (wtd_val)",
+    caption  = "Data: City / StatsCan"
+  )
+```
+
+  
+# Save to desired folder
+
+```{r}
+ggsave("V:/canadian_pedestrian_network/PLOS_Saskatoon_segments_highres.jpg",
+       width = 14, height = 12, dpi = 600)  
+```
+
