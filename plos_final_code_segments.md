@@ -6,31 +6,62 @@ output:
 
 # Segement-level PLOS Saskatoon Map
 
-```{r}
+
+``` r
 # Load the required Libraries
 library(sf)
+```
+
+```
+## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
+```
+
+``` r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 library(ggplot2)
 library(readr)
 ```
 
 ## 1.  File paths 
 
-```{r}
+
+``` r
 ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/Saskatoon_ped_1.shp"
 out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/sk_segment_plos.csv"
 ```
 
 ## 2.  Read & prep 
 
-```{r}
+
+``` r
 ped <- st_read(ped_path, quiet = TRUE)
 ```
 
 
 ## 3.  Clean raw fields
 
-```{r}
+
+``` r
 ped <- ped |>
   mutate(
     Walk_Width = ifelse(Walk_Width %in% c("99999", 99999, "<Null>"), NA, Walk_Width) |> as.numeric(),
@@ -41,7 +72,8 @@ ped <- ped |>
   
 ## 4.  Scoring 
 
-```{r}
+
+``` r
 score_type <- function(x){
   case_when(
     x == "Walkway"  ~ 3,
@@ -54,7 +86,8 @@ score_type <- function(x){
 ```
 
 
-```{r}
+
+``` r
 score_width <- function(w){
   case_when(
     is.na(w)  ~ 0,
@@ -68,7 +101,8 @@ score_width <- function(w){
 ```
 
 
-```{r}
+
+``` r
 score_material <- function(c){
   case_when(
     c %in% c(1, 2, 10) ~ 3,
@@ -83,7 +117,8 @@ score_material <- function(c){
 
 ## 5.  Segment-level PLOS values 
 
-```{r}
+
+``` r
 ped_scored <- ped |>
   mutate(
     sc_type   = score_type(Walk_Type_),
@@ -98,7 +133,8 @@ ped_scored <- ped |>
   
 ## 6.  Z-score & classes
   
-```{r}
+
+``` r
 ped_scored <- ped_scored |>
   mutate(
     z_score   = scale(wtd_val)[, 1],
@@ -116,7 +152,8 @@ write_csv(st_drop_geometry(ped_scored), out_csv)
 
 ## 7.  Colours for four classes 
 
-```{r}
+
+``` r
 seg_cols <- c("Very Low" = "yellow",
               "Low"      = "orange",
               "High"     = "red",
@@ -126,7 +163,8 @@ seg_cols <- c("Very Low" = "yellow",
 
 ## 8.  Creating Segment map 
 
-```{r}
+
+``` r
 bbox_seg <- st_bbox(ped_scored)
 buf_m <- 4000
 bbox_seg <- bbox_seg + c(-buf_m, -buf_m, buf_m, buf_m)
@@ -143,8 +181,11 @@ ggplot(ped_scored) +
   )
 ```
 
+![](plos_final_code_segments_files/figure-html/unnamed-chunk-11-1.png)<!-- -->
 
-```{r}
+
+
+``` r
 # Save to desired folder
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS/PLOS_Saskatoon_segments_highres.jpg",
        width = 14, height = 12, dpi = 600)  

@@ -6,17 +6,46 @@ output:
 
 # Density (points/km²) PLOS Saskatoon Maps
 
-```{r}
+
+``` r
 # Load the required Libraries
 library(sf)
+```
+
+```
+## Linking to GEOS 3.13.0, GDAL 3.8.5, PROJ 9.5.1; sf_use_s2() is TRUE
+```
+
+``` r
 library(dplyr)
+```
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+
+``` r
 library(readr)
 library(ggplot2)
 ```
 
 ## 1. File paths 
 
-```{r}
+
+``` r
 ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/Saskatoon_ped_1.shp"
 da_path <- "/Users/patysalazar/Desktop/MSc/PLOS/lda_000b21a_e/lda_000b21a_e.shp"
 out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/sk_da_plos_score.csv"
@@ -24,7 +53,8 @@ out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/sk_da_plos_score.csv"
 
 ## 2.  Read layers 
 
-```{r}
+
+``` r
 ped <- st_read(ped_path, quiet = TRUE)
 da_poly <- st_read(da_path, quiet = TRUE) |>
   select(DAUID, PRUID, geometry) |>
@@ -34,13 +64,15 @@ da_poly <- st_read(da_path, quiet = TRUE) |>
   
 ## 3.  Set Coordinate System
 
-```{r}
+
+``` r
 ped   <- st_transform(ped, crs = st_crs(da_poly))
 ```
 
 ## 4.  Clean data 
 
-```{r}
+
+``` r
 ped <- ped |>
   mutate(
     Walk_Width = ifelse(Walk_Width %in% c("99999", 99999, "<Null>"), NA, Walk_Width) |> as.numeric(),
@@ -51,7 +83,8 @@ ped <- ped |>
 
 ## 5.  Scoring functions 
 
-```{r}
+
+``` r
 score_type <- function(x){
   case_when(
     x == "Walkway"  ~ 3,
@@ -63,7 +96,8 @@ score_type <- function(x){
 }
 ```
 
-```{r}
+
+``` r
 score_width <- function(w){
   case_when(
     is.na(w)  ~ 0,
@@ -76,7 +110,8 @@ score_width <- function(w){
 }
 ```
 
-```{r}
+
+``` r
 score_material <- function(c){
   case_when(
     c %in% c(1, 2, 10) ~ 3,            # Concrete / Asphalt / Overlay
@@ -91,7 +126,8 @@ score_material <- function(c){
 
 ## 6.  Segment-level PLOS, normalised by DA area 
 
-```{r}
+
+``` r
 ped_scored <- ped |>
   mutate(
     sc_type  = score_type(Walk_Type_),           
@@ -107,7 +143,8 @@ ped_scored <- ped |>
 
 ## 7.  Aggregate density by DAUID 
 
-```{r}
+
+``` r
 da_scores <- ped_scored |>
   st_drop_geometry() |>
   group_by(DAUID) |>
@@ -116,7 +153,8 @@ da_scores <- ped_scored |>
 
 ## 8.  Thresholds for 4 classes (Low / Med / High / Very High) 
 
-```{r}
+
+``` r
 breaks <- c(-Inf, 80, 160, 240, Inf) 
 labels <- c("Low", "Medium", "High", "Very High")
 da_scores <- da_scores |>
@@ -127,7 +165,8 @@ write_csv(da_scores, out_csv)
 
 ## 9.  Crop DA polygons to Saskatoon 
 
-```{r}
+
+``` r
 bbox_sask <- st_bbox(ped)
 buf_m <- 4000                          
 bbox_sask <- bbox_sask + c(-buf_m, -buf_m, buf_m, buf_m)
@@ -137,10 +176,16 @@ da_map <- da_poly |>
   left_join(da_scores, by = "DAUID")
 ```
 
+```
+## Warning: attribute variables are assumed to be spatially constant throughout
+## all geometries
+```
+
   
 ## 10.  Color selection 
 
-```{r}
+
+``` r
 plos_colors <- c("Low" = "yellow", "Medium" = "orange",
                  "High" = "red", "Very High" = "darkred")
 ```
@@ -148,7 +193,8 @@ plos_colors <- c("Low" = "yellow", "Medium" = "orange",
 
 ## 11.  Export map  
 
-```{r}
+
+``` r
 city_label <- "Saskatoon"
 p_class <- ggplot() +
   # Optional: roads underlay
@@ -174,6 +220,11 @@ p_class <- ggplot() +
     legend.key.width = unit(2, "cm")
   )
 print(p_class)
+```
+
+![](plos_final_code_files/figure-html/unnamed-chunk-14-1.png)<!-- -->
+
+``` r
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_classes.png",
        plot = p_class, width = 8, height = 6, dpi = 300)
 ```
@@ -181,7 +232,8 @@ ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_classes.png",
        
 ## 12. Continuous density map 
 
-```{r}
+
+``` r
 p_cont <- ggplot(da_map) +
   geom_sf(aes(fill = plos_density), colour = NA) +
   scale_fill_viridis_c(option = "plasma", direction = -1,
@@ -191,6 +243,11 @@ p_cont <- ggplot(da_map) +
   theme_void() +
   labs(title = "Continuous PLOS density – Saskatoon")
 print(p_cont)
+```
+
+![](plos_final_code_files/figure-html/unnamed-chunk-15-1.png)<!-- -->
+
+``` r
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_continuous.png",
        plot = p_cont, width = 8, height = 6, dpi = 300)
 # Creating other plots
@@ -201,7 +258,8 @@ ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_continuous.png",
 
 ### 13A – Histogram of PLOS density
 
-```{r}
+
+``` r
 ggplot(da_scores, aes(plos_density)) +
   geom_histogram(bins = 30, fill = "steelblue", color = "white") +
   theme_minimal() +
@@ -212,9 +270,12 @@ ggplot(da_scores, aes(plos_density)) +
   )
 ```
 
+![](plos_final_code_files/figure-html/unnamed-chunk-16-1.png)<!-- -->
+
 ### 13B – Bar plot of PLOS classes
 
-```{r}
+
+``` r
 ggplot(da_scores, aes(x = plos_class, fill = plos_class)) +
   geom_bar(show.legend = FALSE) +
   scale_fill_manual(values = plos_colors) +
@@ -225,4 +286,6 @@ ggplot(da_scores, aes(x = plos_class, fill = plos_class)) +
     y     = "Count"
   )
 ```
+
+![](plos_final_code_files/figure-html/unnamed-chunk-17-1.png)<!-- -->
 
