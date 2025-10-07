@@ -40,11 +40,13 @@ The resulting PLOS density values were classified into four categories: Low (<80
 
 The pedestrian scores were then joined to DA polygons, which resulted in a map, where based on the PLOS classification, areas were categorized by colour to reflect the relative accessibility and quality of pedestrian infrastructure. 
 
-Figure 1. Segment-level Pedestrian Level of Service (PLOS) in Saskatoon.<br>
+**Figure 1.** Segment-level Pedestrian Level of Service (PLOS) in Saskatoon.<br>
+
 [View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments_files/figure-html/unnamed-chunk-11-1.png)<br>
 [View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments.Rmd)<br>
 
-Figure 2. Continuous Pedestrian Level of Service (PLOS) density in Saskatoon.<br>
+**Figure 2.** Continuous Pedestrian Level of Service (PLOS) density in Saskatoon.<br>
+
 [View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_files/figure-html/unnamed-chunk-15-1.png)<br>
 [View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code.Rmd)<br>
 
@@ -66,14 +68,14 @@ To further examine the relationship between pedestrian infrastructure quality an
 
 Higher walking rates are concentrated in Saskatoon’s central neighborhoods, overlapping with areas of higher PLOS. In contrast, suburban and industrial zones exhibit lower PLOS and lower walking mode shares.  
 
-Figure 3. Walking Rates (%) by Dissemination Area, Saskatoon.<br>
+**Figure 3.** Walking Rates (%) by Dissemination Area, Saskatoon.<br>
 
 [View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-7-1.png)<br>
 [View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot.Rmd)<br>
 
 The scatterplot shows a weak-to-moderate positive correlation: as PLOS scores increase, walking rate also tends to increase. This suggests that while high-quality pedestrian infrastructure is associated with more walking, other elements, such as land use and built environment factors, also play a critical role in creating walkable communities. 
 
-Figure 4. Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas.<br>
+**Figure 4.** Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas.<br>
 
 [View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
 [View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot.Rmd)<br>
