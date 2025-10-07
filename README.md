@@ -80,7 +80,7 @@ The scatterplot shows a weak-to-moderate positive correlation: as PLOS scores in
 [View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
 [View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot.Rmd)<br>
 
-## Conclusion and recommendations
+## Conclusion and Recommendations
 
 There are clear disparities in pedestrian infrastructure quality across Saskatoon. To promote equity and accessibility, infrastructure investments should focus on suburban and industrial areas with low PLOS scores. Improving sidewalk connectivity, width, and surface quality would help reduce inequalities in walkability, contributing to increased pedestrian activity and healthier, more active communities.  
 
