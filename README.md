@@ -40,13 +40,13 @@ The resulting PLOS density values were classified into four categories: Low (<80
 
 The pedestrian scores were then joined to DA polygons, which resulted in a map, where based on the PLOS classification, areas were categorized by colour to reflect the relative accessibility and quality of pedestrian infrastructure. 
 
-Figure 1. Segment-level Pedestrian Level of Service (PLOS) in Saskatoon. 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments_files/figure-html/unnamed-chunk-11-1.png)
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments.Rmd)
+Figure 1. Segment-level Pedestrian Level of Service (PLOS) in Saskatoon.<br>
+[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments_files/figure-html/unnamed-chunk-11-1.png)<br>
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments.Rmd)<br>
 
-Figure 2. Continuous Pedestrian Level of Service (PLOS) density in Saskatoon. 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_files/figure-html/unnamed-chunk-15-1.png)
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code.Rmd)
+Figure 2. Continuous Pedestrian Level of Service (PLOS) density in Saskatoon.<br>
+[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_files/figure-html/unnamed-chunk-15-1.png)<br>
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code.Rmd)<br>
 
 ## Results 
 
