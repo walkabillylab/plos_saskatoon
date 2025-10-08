@@ -131,7 +131,7 @@ bbox_seg <- st_bbox(ped_scored)
 buf_m <- 4000
 bbox_seg <- bbox_seg + c(-buf_m, -buf_m, buf_m, buf_m)
 ggplot(ped_scored) +
-  geom_sf(aes(colour = plos_class), size = 0.22, show.legend = "line") +
+  geom_sf(aes(colour = plos_class), size = 0.30, show.legend = "line") +
   scale_colour_manual(values = seg_cols, name = "Segment PLOS class") +
   coord_sf(xlim = c(bbox_seg["xmin"], bbox_seg["xmax"]),
            ylim = c(bbox_seg["ymin"], bbox_seg["ymax"]), expand = FALSE) +
@@ -146,7 +146,7 @@ ggplot(ped_scored) +
 
 ```{r}
 # Save to desired folder
-ggsave("/Users/patysalazar/Desktop/MSc/PLOS/PLOS_Saskatoon_segments_highres.jpg",
+ggsave("/Users/patysalazar/Desktop/MSc/PLOS/PLOS/PLOS_Saskatoon_segments_highres.jpg",
        width = 14, height = 12, dpi = 600)  
 ```
 
