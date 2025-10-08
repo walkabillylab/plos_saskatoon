@@ -1,7 +1,7 @@
 # Pedestrian Level of Service (PLOS) in Saskatoon
 
 ### Patricia Salazar-Ramirez, Meisam Ghasedi, Daniel Fuller
-Pdf version of the report available [here](https://github.com/walkabillylab/plos_saskatoon/blob/main/report/plos_saskatoon_report.pdf)
+Pdf version of the report available [here](https://github.com/walkabillylab/plos_saskatoon/blob/main/report/plos_saskatoon_report.pdf).
 
 ## Introduction 
 
@@ -40,8 +40,8 @@ All calculations and data processing were conducted using R.
 |:---------|:--------------|
 | **Saskatoon sidewalk shapefile**  | [Saskatoon_ped_1.shp](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/Saskatoon_ped_1.zip) |
 | **Saskatoon DA shapefile** | [Download instructions](https://github.com/walkabillylab/plos_saskatoon/blob/main/required_files/DA_shp_download.md) | 
-| **Saskatoon sidewalks by DA data** | <a href="https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_da_plos_score.csv" download>sk_da_plos_score.csv</a> |
-| **Saskatoon sidewalks by segments data** | <a href="https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_segment_plos.csv" download>sk_segment_plos.csv</a> |
+| **Saskatoon sidewalks by DA data** | [sk_da_plos_score.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_da_plos_score.zip) | 
+| **Saskatoon sidewalks by segments data** | [sk_segment_plos.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_segment_plos.zip)|
 | **Final excel file** | [FINAL.xlsx](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/FINAL.xlsx)| 
 
 To evaluate pedestrian infrastructure quality across Saskatoon, we developed a scoring framework based on three features of sidewalk and pathway segments: width, class (e.g., sidewalk, shared pathway, trail), and material (e.g. concrete, asphalt, gravel). Each segment was assigned a score for each feature using a predefined rubric reflecting its expected comfort level and accessibility for pedestrians. These three feature scores were then summed to calculate the quality score for each segment. 
@@ -54,12 +54,12 @@ The pedestrian scores were then joined to DA polygons, which resulted in a map, 
 
 ![segment_level_plos](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_Saskatoon_segments_highres.jpg)<br>
 
-**Figure 1.** Segment-level Pedestrian Level of Service (PLOS) in Saskatoon [(View Code).](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code_segments.Rmd)<br>
+**Figure 1.** Segment-level Pedestrian Level of Service (PLOS) in Saskatoon [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code_segments.Rmd).<br>
 <br>
 
 ![continuous_plos](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_Saskatoon_continuous.png)<br>
 
-**Figure 2.** Continuous Pedestrian Level of Service (PLOS) density in Saskatoon [(View Code).](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code.Rmd)<br>
+**Figure 2.** Continuous Pedestrian Level of Service (PLOS) density in Saskatoon [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code.Rmd).<br>
 
 ## Results 
 
@@ -81,14 +81,14 @@ Higher walking rates are concentrated in Saskatoon’s central neighborhoods, ov
 
 ![walking_rate_saskatoon](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-7-1.png)<br>
 
-**Figure 3.** Walking Rates (%) by Dissemination Area, Saskatoon [(View Code).](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd)<br>
+**Figure 3.** Walking Rates (%) by Dissemination Area, Saskatoon [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd).<br>
 
 The scatterplot shows a weak-to-moderate positive correlation: as PLOS scores increase, walking rate also tends to increase. This suggests that while high-quality pedestrian infrastructure is associated with more walking, other elements, such as land use and built environment factors, also play a critical role in creating walkable communities. 
 
 
 ![scatterplot_plos_walkingrate](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
 
-**Figure 4.** Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas.[(View Code).](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd)<br>
+**Figure 4.** Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd).<br>
 
 ## Conclusion and Recommendations
 
