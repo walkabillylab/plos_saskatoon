@@ -17,9 +17,9 @@ library(ggplot2)
 ## 1. File paths 
 
 ```{r}
-ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/Saskatoon_ped_1.shp"
-da_path <- "/Users/patysalazar/Desktop/MSc/PLOS/lda_000b21a_e/lda_000b21a_e.shp"
-out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/sk_da_plos_score.csv"
+ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/Saskatoon_ped_1.shp"
+da_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/lda_000b21a_e/lda_000b21a_e.shp"
+out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/sk_da_plos_score.csv"
 ```
 
 ## 2.  Read layers 
@@ -174,7 +174,7 @@ p_class <- ggplot() +
     legend.key.width = unit(2, "cm")
   )
 print(p_class)
-ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_classes.png",
+ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_classes.png",
        plot = p_class, width = 8, height = 6, dpi = 300)
 ```
 
@@ -191,7 +191,7 @@ p_cont <- ggplot(da_map) +
   theme_void() +
   labs(title = "Continuous PLOS density – Saskatoon")
 print(p_cont)
-ggsave("/Users/patysalazar/Desktop/MSc/PLOS//PLOS_Saskatoon_continuous.png",
+ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_continuous.png",
        plot = p_cont, width = 8, height = 6, dpi = 300)
 # Creating other plots
 ```

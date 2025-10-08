@@ -18,8 +18,8 @@ library(ggplot2)
 ## 1. File Paths 
 
 ```{r}
-da_path <- "/Users/patysalazar/Desktop/MSc/PLOS/lda_000b21a_e/lda_000b21a_e.shp"
-final_data_path <- "/Users/patysalazar/Desktop/MSc/PLOS/FINAL.xlsx"
+da_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/lda_000b21a_e/lda_000b21a_e.shp"
+final_data_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/FINAL.xlsx"
 ```
 
 ## 2. Load Data 

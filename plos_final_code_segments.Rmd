@@ -17,8 +17,8 @@ library(readr)
 ## 1.  File paths 
 
 ```{r}
-ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/Saskatoon_ped_1.shp"
-out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/sk_segment_plos.csv"
+ped_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/Saskatoon_ped_1.shp"
+out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/sk_da_plos_score.csv"
 ```
 
 ## 2.  Read & prep 
@@ -109,7 +109,7 @@ ped_scored <- ped_scored |>
       include.lowest = TRUE
     )
   )
-write_sf(ped_scored, "/Users/patysalazar/Desktop/MSc/PLOS/Saskatoon_ped_PLOS_segments.gpkg")
+write_sf(ped_scored, "/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/Saskatoon_ped_PLOS_segments.gpkg")
 write_csv(st_drop_geometry(ped_scored), out_csv)
 ```
 
@@ -131,7 +131,7 @@ bbox_seg <- st_bbox(ped_scored)
 buf_m <- 4000
 bbox_seg <- bbox_seg + c(-buf_m, -buf_m, buf_m, buf_m)
 ggplot(ped_scored) +
-  geom_sf(aes(colour = plos_class), size = 0.30, show.legend = "line") +
+  geom_sf(aes(colour = plos_class), size = 0.22, show.legend = "point") +
   scale_colour_manual(values = seg_cols, name = "Segment PLOS class") +
   coord_sf(xlim = c(bbox_seg["xmin"], bbox_seg["xmax"]),
            ylim = c(bbox_seg["ymin"], bbox_seg["ymax"]), expand = FALSE) +
@@ -141,12 +141,13 @@ ggplot(ped_scored) +
     subtitle = "Classes based on Z-score of length-weighted quality (wtd_val)",
     caption  = "Data: City / StatsCan"
   )
+
 ```
 
 
 ```{r}
 # Save to desired folder
-ggsave("/Users/patysalazar/Desktop/MSc/PLOS/PLOS/PLOS_Saskatoon_segments_highres.jpg",
+ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_segments_highres.jpg",
        width = 14, height = 12, dpi = 600)  
 ```
 
