@@ -1,5 +1,9 @@
 # Pedestrian Level of Service (PLOS) in Saskatoon
 
+### Patricia Salazar-Ramirez, Meisam Ghasedi, Daniel Fuller
+[Full report](.pdf)
+
+---
 
 ## Introduction 
 
@@ -32,6 +36,16 @@ Taken together, the literature demonstrates that PLOS is a flexible, evolving fr
 
 All calculations and data processing were conducted using R.  
 
+### Required Files
+
+| File | Download |
+|:---------|:--------------|
+| **Saskatoon sidewalk shapefile**  | [Saskatoon_ped_1.shp](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/Saskatoon_ped_1.zip) |
+| **Saskatoon DA shapefile** | [Download instructions]() | 
+| **Saskatoon sidewalks by DA data** | [sk_da_plos_score.csv]() |
+| **Saskatoon sidewalks by segments data** | [sk_segment_plos.csv]()| 
+| **Final excel file** | [FINAL.xlsx]()| 
+
 To evaluate pedestrian infrastructure quality across Saskatoon, we developed a scoring framework based on three features of sidewalk and pathway segments: width, class (e.g., sidewalk, shared pathway, trail), and material (e.g. concrete, asphalt, gravel). Each segment was assigned a score for each feature using a predefined rubric reflecting its expected comfort level and accessibility for pedestrians. These three feature scores were then summed to calculate the quality score for each segment. 
 
 Next, this score was weighted by segment length to account for the relative contribution of each segment within its corresponding Dissemination Area (DA). Weighted scores were summed for each DA and normalized by DA area (points/km2) to be able to compare between areas of different sizes. 
@@ -42,13 +56,17 @@ The pedestrian scores were then joined to DA polygons, which resulted in a map, 
 
 **Figure 1.** Segment-level Pedestrian Level of Service (PLOS) in Saskatoon.<br>
 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments_files/figure-html/unnamed-chunk-11-1.png)<br>
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_segments.Rmd)<br>
+![segment_level_plos](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_Saskatoon_segments_highres.jpg)<br>
+
+
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code_segments.Rmd)<br>
 
 **Figure 2.** Continuous Pedestrian Level of Service (PLOS) density in Saskatoon.<br>
 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code_files/figure-html/unnamed-chunk-15-1.png)<br>
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/plos_final_code.Rmd)<br>
+![continuous_plos](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_Saskatoon_continuous.png)<br>
+
+
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/plos_final_code.Rmd)<br>
 
 ## Results 
 
@@ -70,15 +88,19 @@ Higher walking rates are concentrated in Saskatoon’s central neighborhoods, ov
 
 **Figure 3.** Walking Rates (%) by Dissemination Area, Saskatoon.<br>
 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-7-1.png)<br>
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot.Rmd)<br>
+![walking_rate_saskatoon](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-7-1.png)<br>
+
+
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd)<br>
 
 The scatterplot shows a weak-to-moderate positive correlation: as PLOS scores increase, walking rate also tends to increase. This suggests that while high-quality pedestrian infrastructure is associated with more walking, other elements, such as land use and built environment factors, also play a critical role in creating walkable communities. 
 
 **Figure 4.** Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas.<br>
 
-[View Figure](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
-[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot.Rmd)<br>
+![scatterplot_plos_walkingrate](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
+
+
+[View Code](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd)<br>
 
 ## Conclusion and Recommendations
 
