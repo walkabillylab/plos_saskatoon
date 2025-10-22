@@ -38,11 +38,11 @@ All calculations and data processing were conducted using R.
 
 | File | Download |
 |:---------|:--------------|
-| **Saskatoon sidewalk shapefile**  | [Saskatoon_ped_1.shp](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/Saskatoon_ped_1.zip) |
-| **Saskatoon DA shapefile** | [Download instructions](https://github.com/walkabillylab/plos_saskatoon/blob/main/required_files/DA_shp_download.md) | 
-| **Saskatoon sidewalks by DA data** | [sk_da_plos_score.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_da_plos_score.zip) | 
-| **Saskatoon sidewalks by segments data** | [sk_segment_plos.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_segment_plos.zip)|
-| **Final excel file** | [FINAL.xlsx](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/FINAL.xlsx)| 
+| Saskatoon sidewalk shapefile  | [Saskatoon_ped_1.shp](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/Saskatoon_ped_1.zip) |
+| Saskatoon DA shapefile | [Download instructions](https://github.com/walkabillylab/plos_saskatoon/blob/main/required_files/DA_shp_download.md) | 
+| Saskatoon sidewalks by DA data | [sk_da_plos_score.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_da_plos_score.zip) | 
+| Saskatoon sidewalks by segments data | [sk_segment_plos.csv](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/sk_segment_plos.zip)|
+| Final excel file | [FINAL.xlsx](https://raw.githubusercontent.com/walkabillylab/plos/main/required_files/FINAL.xlsx)| 
 
 To evaluate pedestrian infrastructure quality across Saskatoon, we developed a scoring framework based on three features of sidewalk and pathway segments: width, class (e.g., sidewalk, shared pathway, trail), and material (e.g. concrete, asphalt, gravel). Each segment was assigned a score for each feature using a predefined rubric reflecting its expected comfort level and accessibility for pedestrians. These three feature scores were then summed to calculate the quality score for each segment. 
 
