@@ -35,8 +35,7 @@ da_poly <- st_read(da_path, quiet = TRUE) |>
 ## 3.  Set Coordinate System
 
 ```{r}
-#ped   <- st_transform(ped, crs = st_crs(da_poly))
-ped <- st_transform(ped, crs = 3857)
+ped <- st_transform(ped, crs = 3857) # projection -> Mercator
 da_poly <- st_transform(da_poly, crs = 3857)
 ```
 
@@ -144,8 +143,8 @@ da_map <- da_poly |>
 ## 10.  Color selection 
 
 ```{r}
-plos_colors <- c("Low" = "yellow", "Medium" = "orange",
-                 "High" = "red", "Very High" = "darkred")
+plos_colors <- c("Low" = "#fecc5c", "Medium" = "#fd8d3c",
+                 "High" = "#f03b20", "Very High" = "#bd0026")
 ```
 
 
@@ -188,7 +187,7 @@ ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_classes.png
 p_cont <- ggplot(da_map) +
   geom_sf(aes(fill = plos_density), colour = NA) +
   scale_fill_gradientn(
-    colours = c("#a1dab4", "#41b6c4", "#2c7fb8", "#253494"),
+    colours = c("#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"),
     na.value = "grey90",
     name = "PLOS density\n(points / km²)"
   ) +

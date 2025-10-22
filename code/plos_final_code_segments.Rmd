@@ -25,6 +25,7 @@ out_csv <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/sk_da_plos_s
 
 ```{r}
 ped <- st_read(ped_path, quiet = TRUE)
+ped <- st_transform(ped, crs = 3857)
 ```
 
 
@@ -117,10 +118,10 @@ write_csv(st_drop_geometry(ped_scored), out_csv)
 ## 7.  Colours for four classes 
 
 ```{r}
-seg_cols <- c("Very Low" = "yellow",
-              "Low"      = "orange",
-              "High"     = "red",
-              "Very High"= "darkred")
+seg_cols <- c("Very Low" = "#fecc5c",
+              "Low"      = "#fd8d3c",
+              "High"     = "#f03b20",
+              "Very High"= "#bd0026")
 ```
 
 
