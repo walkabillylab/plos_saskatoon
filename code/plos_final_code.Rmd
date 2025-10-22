@@ -35,8 +35,11 @@ da_poly <- st_read(da_path, quiet = TRUE) |>
 ## 3.  Set Coordinate System
 
 ```{r}
-ped   <- st_transform(ped, crs = st_crs(da_poly))
+#ped   <- st_transform(ped, crs = st_crs(da_poly))
+ped <- st_transform(ped, crs = 3857)
+da_poly <- st_transform(da_poly, crs = 3857)
 ```
+
 
 ## 4.  Clean data 
 
@@ -184,8 +187,11 @@ ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_classes.png
 ```{r}
 p_cont <- ggplot(da_map) +
   geom_sf(aes(fill = plos_density), colour = NA) +
-  scale_fill_viridis_c(option = "plasma", direction = -1,
-                       na.value = "grey90", name = "PLOS density\n(points / km²)") +
+  scale_fill_gradientn(
+    colours = c("#a1dab4", "#41b6c4", "#2c7fb8", "#253494"),
+    na.value = "grey90",
+    name = "PLOS density\n(points / km²)"
+  ) +
   coord_sf(xlim = c(bbox_sask["xmin"], bbox_sask["xmax"]),
            ylim = c(bbox_sask["ymin"], bbox_sask["ymax"]), expand = FALSE) +
   theme_void() +
