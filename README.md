@@ -79,14 +79,13 @@ To further examine the relationship between pedestrian infrastructure quality an
 
 Higher walking rates are concentrated in Saskatoon’s central neighborhoods, overlapping with areas of higher PLOS. In contrast, suburban and industrial zones exhibit lower PLOS and lower walking mode shares.  
 
-![walking_rate_saskatoon](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-7-1.png)<br>
+![walking_rate_saskatoon](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_Saskatoon_walk-rate.png)<br>
 
 **Figure 3.** Walking Rates (%) by Dissemination Area, Saskatoon [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd).<br>
 
 The scatterplot shows a weak-to-moderate positive correlation: as PLOS scores increase, walking rate also tends to increase. This suggests that while high-quality pedestrian infrastructure is associated with more walking, other elements, such as land use and built environment factors, also play a critical role in creating walkable communities. 
 
-
-![scatterplot_plos_walkingrate](https://github.com/walkabillylab/plos_saskatoon/blob/main/walk_rate_scatterplot_files/figure-html/unnamed-chunk-6-1.png)<br>
+![scatterplot_plos_walkingrate](https://github.com/walkabillylab/plos_saskatoon/blob/main/maps/PLOS_walk-rate_scatterplot.png)<br>
 
 **Figure 4.** Validation: PLOS Density vs Walking Rate, Saskatoon Dissemination Areas [(View Code)](https://github.com/walkabillylab/plos_saskatoon/blob/main/code/walk_rate_scatterplot.Rmd).<br>
 
