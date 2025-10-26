@@ -171,11 +171,14 @@ p_class <- ggplot() +
     legend.position  = "bottom",
     legend.title     = element_text(size = 12),
     legend.text      = element_text(size = 10),
-    legend.key.width = unit(2, "cm")
+    legend.key.width = unit(2, "cm"),
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA)
   )
 print(p_class)
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_classes.png",
-       plot = p_class, width = 8, height = 6, dpi = 300)
+       plot = p_class, width = 8, height = 6, dpi = 300,
+       bg = "white")
 ```
 
        
@@ -186,16 +189,21 @@ p_cont <- ggplot(da_map) +
   geom_sf(aes(fill = plos_density), colour = NA) +
   scale_fill_gradientn(
     colours = c("#fecc5c", "#fd8d3c", "#f03b20", "#bd0026"),
-    na.value = "grey90",
+    na.value = "white",
     name = "PLOS density\n(points / km²)"
   ) +
   coord_sf(xlim = c(bbox_sask["xmin"], bbox_sask["xmax"]),
            ylim = c(bbox_sask["ymin"], bbox_sask["ymax"]), expand = FALSE) +
   theme_void() +
+    theme(
+    plot.background = element_rect(fill = "white", color = NA),
+    panel.background = element_rect(fill = "white", color = NA)
+  ) +
   labs(title = "Continuous PLOS density – Saskatoon")
 print(p_cont)
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_continuous.png",
-       plot = p_cont, width = 8, height = 6, dpi = 300)
+       plot = p_cont, width = 8, height = 6, dpi = 300,
+       bg = "white")
 # Creating other plots
 ```
 

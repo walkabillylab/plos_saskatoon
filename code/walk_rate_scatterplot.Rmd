@@ -67,7 +67,8 @@ validation_plot <- ggplot(da_map_final, aes(x = plos_density, y = walk_rate * 10
   )
 print(validation_plot)
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_walk-rate_scatterplot.png",
-       plot = validation_plot, width = 8, height = 6, dpi = 300)
+       plot = validation_plot, width = 8, height = 6, dpi = 300,
+       bg = "white")
 ```
 
 ## 5. Create Walk Rates Map
@@ -84,6 +85,7 @@ walk_rate_map <- ggplot(da_map_final) +
 print(walk_rate_map)
 
 ggsave("/Users/patysalazar/Desktop/MSc/PLOS/plos/maps/PLOS_Saskatoon_walk-rate.png",
-       plot = walk_rate_map, width = 8, height = 6, dpi = 300)
+       plot = walk_rate_map, width = 8, height = 6, dpi = 300,
+       bg = "white")
 ```
 
