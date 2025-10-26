@@ -14,7 +14,6 @@ library(sf)
 library(ggplot2)
 ```
 
-
 ## 1. File Paths 
 
 ```{r}
@@ -28,6 +27,12 @@ final_data_path <- "/Users/patysalazar/Desktop/MSc/PLOS/plos/required_files/FINA
 ```{r}
 da_poly <- st_read(da_path, quiet = TRUE) |>
   filter(PRUID == "47") # Filter for Saskatchewan
+```
+
+### Set Coordinate System
+
+```{r}
+da_poly <- st_transform(da_poly, crs = 3857)
 ```
 
 ### Load the final scores from the Excel file

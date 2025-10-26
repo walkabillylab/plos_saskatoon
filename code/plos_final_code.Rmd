@@ -30,7 +30,6 @@ da_poly <- st_read(da_path, quiet = TRUE) |>
   select(DAUID, PRUID, geometry) |>
   filter(PRUID == "47")  # keep Saskatchewan only
 ```
-
   
 ## 3.  Set Coordinate System
 
@@ -38,7 +37,6 @@ da_poly <- st_read(da_path, quiet = TRUE) |>
 ped <- st_transform(ped, crs = 3857) # projection -> Mercator
 da_poly <- st_transform(da_poly, crs = 3857)
 ```
-
 
 ## 4.  Clean data 
 
